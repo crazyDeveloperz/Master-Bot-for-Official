@@ -194,12 +194,11 @@ Nᴀᴍᴇ - {}"""
 
 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 <b>: {}</b>"""
 
-    CAPTION = """<b>📂Fɪʟᴇɴᴀᴍᴇ : {file_name}
+    CAPTION = """<b>📁 𝒇𝒊𝒍𝒆 𝒏𝒂𝒎𝒆 - {file_name}
 
+🔁 𝒇𝒊𝒍𝒆 𝒔𝒊𝒛𝒆 - {file_size}
 
-╔════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╗
-▫️<a href=https://t.me/snfilmy> ᴄʜᴀɴɴᴇʟ </a>
-╚════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╝</b>"""
+<a href='t.me/crazybotz'>𝗖𝗿𝗮𝘇𝘆𝗯𝗼𝘁𝘇</a> ✅</b>"""
     
 
     IMDB_TEMPLATE_TXT = """
