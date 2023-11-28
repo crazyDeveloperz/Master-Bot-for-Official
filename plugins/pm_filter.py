@@ -71,7 +71,7 @@ async def pm_search(client, message):
     files, n_offset, total = await get_search_results(message.text, filter=True)
     if int(total) != 0:
         btn = [[
-            InlineKeyboardButton("Here", url='https://t.me/SL_Films_World')
+            InlineKeyboardButton("Here", url=CHNL_LNK) 
         ]]
         await message.reply_text(f'Total {total} results found in this group', reply_markup=InlineKeyboardMarkup(btn))
 
@@ -1182,7 +1182,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('♻️ ᴀʙᴏᴜᴛ ♻️', callback_data='about')
 
                 ],[                                        
-                    InlineKeyboardButton('🔺 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🔺', url="t.me/Unknown_Support_Bot")                            
+                    InlineKeyboardButton('🔺 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🔺', url=CHNL_LNK)                        
                 ]]
         
         reply_markup = InlineKeyboardMarkup(buttons)
