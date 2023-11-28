@@ -149,13 +149,7 @@ Nᴀᴍᴇ - {}"""
 
     MELCOW_ENG = """<b>Hᴇʟʟᴏ {} 😍, Aɴᴅ Wᴇʟᴄᴏᴍᴇ Tᴏ {} Gʀᴏᴜᴘ ❤️</b>"""
 
-    OWNER_INFO = """
-<b>⍟───[ ᴏᴡɴᴇʀ ᴅᴇᴛᴀɪʟꜱ ]───⍟
     
-• ꜰᴜʟʟ ɴᴀᴍᴇ : Uɴᴋɴᴏᴡɴ
-• ᴜꜱᴇʀɴᴀᴍᴇ : @heartlesssn
-• ᴘᴇʀᴍᴀɴᴇɴᴛ ᴅᴍ ʟɪɴᴋ : <a href='https://t.me/heartlesssn'>ᴄʀᴀᴢʏ ᴅᴇᴠᴇʟᴏᴘᴇʀ</a></b>"""
-
     REQINFO = """
 ⚠ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ⚠
 
@@ -207,7 +201,7 @@ IMDb Data:
 
 🔖 ᴛɪᴛʟᴇ: <a href={url}>{title}</a>
 🎭 ɢᴇɴʀᴇs: {genres}
-🎖 ʀᴀᴛɪɴɢ : <a href={url}/ratings>{rating}</a> / 10 (ʙᴀsᴇᴅ ᴏɴ {votes} ᴜsᴇʀ ʀᴀᴛɪɴɢ.)
+🎖 ʀᴀᴛɪɴɢ : <a href={url}/ratings>{rating}</a> / 10
 
 📆 ʏᴇᴀʀ: <a href={url}/releaseinfo>{year}</a>
 🗞 ʟᴀɴɢᴜᴀɢᴇ : {languages}
