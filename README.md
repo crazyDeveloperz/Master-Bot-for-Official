@@ -192,7 +192,7 @@ python3 bot.py
  - Thanks To All Everyone In This Journey
  - Thanks To [EvamariaTG](https://raw.githubusercontent.com/EvamariaTG) for their awesome [EvaMaria Bot](https://raw.githubusercontent.com/EvamariaTG/EvaMaria)
  - Thanks To [Joelkb](https://github.com/Joelkb) who have edited and modified this repo.
- - Thanks To [crazy developer](https://github.com/shivam31635) who have edited and modified this repo as now it is. (It's me 😂)
+ - Thanks To [crazy developer](https://github.com/crazyDeveloperz) who have edited and modified this repo as now it is. (It's me 😂)
 
 ## Disclaimer
 [![GNU Affero General Public License 2.0](https://www.gnu.org/graphics/agplv3-155x51.png)](https://www.gnu.org/licenses/agpl-3.0.en.html#header)    
