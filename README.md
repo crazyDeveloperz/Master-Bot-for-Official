@@ -192,6 +192,7 @@ python3 bot.py
  - Thanks To All Everyone In This Journey
  - Thanks To [EvamariaTG](https://raw.githubusercontent.com/EvamariaTG) for their awesome [EvaMaria Bot](https://raw.githubusercontent.com/EvamariaTG/EvaMaria)
  - Thanks To [Joelkb](https://github.com/Joelkb) who have edited and modified this repo.
+ - Thank you [LazyDeveloper](https://github.com/LazyDeveloperr) For His Awesome [Lazy-Princess-Bot](https://github.com/LazyDeveloperr/LazyPrincess)
  - Thanks To [crazy developer](https://github.com/crazyDeveloperz) who have edited and modified this repo as now it is. (It's me 😂)
 
 ## Disclaimer
