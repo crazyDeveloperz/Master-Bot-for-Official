@@ -63,6 +63,7 @@ GRP_LNK = environ.get('GRP_LNK', 'https://t.me/Crazybotz')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/Crazybotz')
 MSG_ALRT = environ.get('MSG_ALRT', 'ꜱʜᴀʀᴇ ᴀɴᴅ ꜱᴜᴘᴘᴏʀᴛ')
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', 0))
+BIN_CHANNEL = environ.get("STREAM_BIN", "-1001890815456") #Log channel/Bin Channel id -100xxxxxxx
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'Crazybotz')
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "False")), False)
 IMDB = is_enabled((environ.get('IMDB', "True")), True)
