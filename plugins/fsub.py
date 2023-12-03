@@ -92,7 +92,7 @@ async def ForceSub(bot: Client, update: Message, file_id: str = False, mode="che
         else:
             return True
     except UserNotParticipant:
-        text="""**Please Join My Updates Channel to use this Bot!**"""
+        text="""**Join our update channel below. bot will not give you movie until you join from our update channel...\n\nहमारे निचे दिए गये अपडेट  चैनल को जॉइन कर ले। जब तक आप हमारे अपडेट चैनल को जॉइन नहीं करेंगे तब तक बॉट आपको मूवी नहीं देगा...\n\nகீழே உள்ள எங்கள் புதுப்பிக்கப்பட்ட சேனலில் சேரவும்.  எங்கள் புதுப்பிப்பு சேனலில் நீங்கள் சேரும் வரை போட் உங்களுக்கு திரைப்படத்தை வழங்காது...\n\nਹੇਠਾਂ ਸਾਡੇ ਅਪਡੇਟ ਕੀਤੇ ਚੈਨਲ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ।  ਬੋਟ ਤੁਹਾਨੂੰ ਉਦੋਂ ਤੱਕ ਮੂਵੀ ਨਹੀਂ ਦੇਵੇਗਾ ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਸਾਡੇ ਅਪਡੇਟ ਚੈਨਲ ਤੋਂ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਜਾਂਦੇ...\n\n ചുവടെയുള്ള ഞങ്ങളുടെ അപ്‌ഡേറ്റ് ചെയ്‌ത ചാനലിൽ ചേരുക.  ഞങ്ങളുടെ അപ്‌ഡേറ്റ് ചാനലിൽ നിന്ന് നിങ്ങൾ ചേരുന്നത് വരെ ബോട്ട് നിങ്ങൾക്ക് സിനിമ നൽകില്ല....**"""
 
         buttons = [
             [
