@@ -46,10 +46,10 @@ AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_chan
 # Set to False inside the bracket if you don't want to use Request Channel else set it to Channel ID
 REQ_CHANNEL = environ.get("REQ_CHANNEL", True)
 REQ_CHANNEL = int(REQ_CHANNEL) if REQ_CHANNEL and id_pattern.search(REQ_CHANNEL) else False
-JOIN_REQS_DB = environ.get("JOIN_REQS_DB", DATABASE_URI)
+JOIN_REQS_DB = environ.get("JOIN_REQS_DB", "mongodb+srv://Crazypublic:Crazypublic@cluster0.dekcmym.mongodb.net/?retryWrites=true&w=majority")
 
 # MongoDB information
-DATABASE_URI = "mongodb+srv://Crazypublic:Crazypublic@cluster0.dekcmym.mongodb.net/?retryWrites=true&w=majority"
+
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://Crazypublic:Crazypublic@cluster0.dekcmym.mongodb.net/?retryWrites=true&w=majority")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Rajappan")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
