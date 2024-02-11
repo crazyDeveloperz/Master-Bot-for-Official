@@ -12,6 +12,7 @@ def is_enabled(value, default):
         return default
 
 # Bot information
+#------------------------------------------ BOT INFORMATION CODE ---------------------------------------------#
 
 SESSION = environ.get('SESSION', 'Media_search')
 API_ID = int(environ.get('API_ID', '29499299'))
@@ -22,18 +23,24 @@ BOT_TOKEN = environ.get('BOT_TOKEN', "5925955161:AAFwsUpZqBllxTIhVVOGB4rwrJG_4LL
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = is_enabled((environ.get('USE_CAPTION_FILTER', 'True')), True)
 
+#------------------------------------------ IMAGE OR VEDIO CODE ---------------------------------------------#
+
 PICS = (environ.get('PICS', 'https://graph.org/file/d208327ef06bc32765e29.jpg')).split()
 NOR_IMG = environ.get("NOR_IMG", "https://telegra.ph/file/46443096bc6895c74a716.jpg")
 MELCOW_VID = environ.get("MELCOW_VID", "https://telegra.ph/file/451f038b4e7c2ddd10dc0.mp4")
 SPELL_IMG = environ.get("SPELL_IMG", "https://telegra.ph/file/5e2d4418525832bc9a1b9.jpg")
 
-# Admins, Channels & Users
-support_chat_id = environ.get('SUPPORT_CHAT_ID')
-SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
+#------------------------------------------ USER CODE ---------------------------------------------#
+
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '6249148586').split()]
-CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1001956475641').split()]
 auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
+
+#------------------------------------------ CHANNEL OR SUPPORT CODE ---------------------------------------------#
+
+support_chat_id = environ.get('SUPPORT_CHAT_ID')
+SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
+CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1001956475641').split()]
 auth_grp = environ.get('AUTH_GROUP')
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 reqst_channel = environ.get('REQST_CHANNEL_ID')
@@ -41,7 +48,8 @@ REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
 NO_RESULTS_MSG = is_enabled((environ.get("NO_RESULTS_MSG", 'False')), False)
 
-# FSUB
+#------------------------------------------ FORSE SUB CODE ---------------------------------------------#
+
 auth_channel = environ.get('AUTH_CHANNEL','-1002039261597')
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
 # Set to False inside the bracket if you don't want to use Request Channel else set it to Channel ID
@@ -49,18 +57,23 @@ REQ_CHANNEL = environ.get("REQ_CHANNEL", True)
 REQ_CHANNEL = int(REQ_CHANNEL) if REQ_CHANNEL and id_pattern.search(REQ_CHANNEL) else False
 JOIN_REQS_DB = environ.get("JOIN_REQS_DB", "mongodb+srv://Crazypublic:Crazypublic@cluster0.dekcmym.mongodb.net/?retryWrites=true&w=majority")
 
-#Renamer Configs
+#------------------------------------------ RENAME CURRENT NOT WORKING CODE ---------------------------------------------#
+
 FLOOD = int(environ.get("FLOOD", "10"))
 LAZY_MODE = bool(environ.get("LAZY_MODE"))
 #Add user id of the user in this field those who you want to be Authentic user for file renaming features
 lazy_renamers = [int(lazrenamers) if id_pattern.search(lazrenamers) else lazrenamers for lazrenamers in environ.get('LAZY_RENAMERS', '').split()]
 LAZY_RENAMERS = (lazy_renamers + ADMINS) if lazy_renamers else []
 
-# MongoDB information
+#------------------------------------------ DATABSE INFORMATION CODE ---------------------------------------------#
 
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://Crazypublic:Crazypublic@cluster0.dekcmym.mongodb.net/?retryWrites=true&w=majority")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Rajappan")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
+
+#------------------------------------------ FILE AUTODELETE INFORMATION CODE ---------------------------------------------#
+
+CRAZY_TIME = int(environ.get('CRAZY_TIME', 600))
 
 IS_VERIFY = is_enabled((environ.get('IS_VERIFY', 'False')), False)
 HOW_TO_VERIFY = environ.get('HOW_TO_VERIFY', "https://t.me/Crazybotz")
@@ -97,7 +110,7 @@ MELCOW_NEW_USERS = is_enabled((environ.get('MELCOW_NEW_USERS', "True")), True)
 PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 
-
+#------------------------------------------ STREAM CODE ---------------------------------------------#
 
 BIN_CHANNEL = environ.get("BIN_CHANNEL", "-1001890815456")
 
