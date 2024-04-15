@@ -1262,7 +1262,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         # Log the error to a file or service
             print(e)  
             await query.answer(f"⚠️Something went wrong.\n\n{e}", show_alert=True)
-            return rewrite and solve error
+            return
 
     # don't change anything without contacting me @creatorrio
 
