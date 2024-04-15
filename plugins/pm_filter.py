@@ -1231,7 +1231,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         _, file_id = lazyData.split(":")
         try:
             user_id = query.from_user.id
-            username = query.from_user.mention 
+            username =  query.from_user.mention 
+
             log_msg = await client.send_cached_media(
                 chat_id=LOG_CHANNEL,
                 file_id=file_id,
@@ -1239,24 +1240,29 @@ async def cb_handler(client: Client, query: CallbackQuery):
             fileName = {quote_plus(get_name(log_msg))}
             lazy_stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
             lazy_download = f"{URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-            buttons = []
-                buttons = [[
-                    InlineKeyboardButton("• ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=lazy_download),
-                    InlineKeyboardButton("ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ •", url=lazy_stream)
-                ]]
-            await query.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
+
+            xo = await query.message.reply_text(f'💥')
+            await asyncio.sleep(0.5)
+            await xo.delete()
+
             await log_msg.reply_text(
-                    text=f"#LinkGenrated\n\nIᴅ : <code>{user_id}</code>\nUꜱᴇʀɴᴀᴍᴇ : {username}\n\nNᴀᴍᴇ : {fileName}",
-                    quote=True,
-                    disable_web_page_preview=True,
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("• ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=lazy_stream),
-                                                        InlineKeyboardButton('ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ •', url=lazy_download)]]))  
+                text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{user_id} \n•• ᴜꜱᴇʀɴᴀᴍᴇ : {username} \n\n•• Fɪʟᴇ Nᴀᴍᴇ : {fileName}",
+                quote=True,
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚀 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=lazy_download),  # we download Link
+                                                    InlineKeyboardButton('ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🖥️', url=lazy_stream)]])  # web stream Link
+            )
+            await query.message.reply_text(
+                text="•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ☠︎⚔",
+                quote=True,
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚀 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=lazy_download),  # we download Link
+                                                    InlineKeyboardButton('ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🖥️', url=lazy_stream)]])  # web stream Link
+            )
         except Exception as e:
             print(e)  # print the error message
-            await query.answer(f"⚠️kuch to galat hai bc \n\n{e}", show_alert=True)
+            await query.answer(f"☣something went wrong sweetheart\n\n{e}", show_alert=True)
             return
-
-    # don't change anything without contacting me @creatorrio
 
     elif query.data == "reqinfo":
         await query.answer(text=script.REQINFO, show_alert=True)
