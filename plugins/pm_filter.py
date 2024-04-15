@@ -1236,32 +1236,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 chat_id=LOG_CHANNEL,
                 file_id=file_id,
             )
-            fileName = quote_plus(get_name(log_msg))
+            fileName = {quote_plus(get_name(log_msg))}
             lazy_stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
             lazy_download = f"{URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-            buttons = [
-                [
+            buttons = []
+                buttons = [[
                     InlineKeyboardButton("• ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=lazy_download),
                     InlineKeyboardButton("ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ •", url=lazy_stream)
-                ],
-                [
-                    InlineKeyboardButton("ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ in TG •", web_app=WebAppInfo(url=lazy_stream))
-                ]
-            ]
-
-            query.message.reply_markup = query.message.reply_markup or InlineKeyboardMarkup([])
-            query.message.reply_markup.inline_keyboard.insert(0, buttons)
+                ]]
             await query.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
             await log_msg.reply_text(
-                text=f"#LinkGenrated\n\nIᴅ : <code>{user_id}</code>\nUꜱᴇʀɴᴀᴍᴇ : {username}\n\nNᴀᴍᴇ : {fileName}",
-                quote=True,
-                disable_web_page_preview=True,
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("• ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=lazy_download),
-                                                    InlineKeyboardButton('ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ •', url=lazy_stream)]]))  
+                    text=f"#LinkGenrated\n\nIᴅ : <code>{user_id}</code>\nUꜱᴇʀɴᴀᴍᴇ : {username}\n\nNᴀᴍᴇ : {fileName}",
+                    quote=True,
+                    disable_web_page_preview=True,
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("• ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=lazy_stream),
+                                                        InlineKeyboardButton('ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ •', url=lazy_download)]]))  
         except Exception as e:
-        # Log the error to a file or service
-            print(e)  
-            await query.answer(f"⚠️Something went wrong.\n\n{e}", show_alert=True)
+            print(e)  # print the error message
+            await query.answer(f"⚠️kuch to galat hai bc \n\n{e}", show_alert=True)
             return
 
     # don't change anything without contacting me @creatorrio
