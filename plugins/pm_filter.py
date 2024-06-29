@@ -47,13 +47,13 @@ BUTTONS = {}
 SPELL_CHECK = {}
 
 @Client.on_callback_query(filters.regex("toprslt"))
-async def top_search_results(client, query):
+async def top_search_results(client: Client, query: CallbackQuery):
     def is_valid_string(string):
         return bool(re.match('^[a-zA-Z0-9 ]*$', string))
     
     await query.answer("Fetching Top Searches, please be patient. It might take some time.", show_alert=True)
     
-    top_searches = await mdb.get_top_messages(20)
+    top_searches = await mdb.get_top_messages(10)  # Fetching top 10 searches
 
     unique_messages = set()
     truncated_messages = []
@@ -62,23 +62,18 @@ async def top_search_results(client, query):
         if msg.lower() not in unique_messages and is_valid_string(msg):
             unique_messages.add(msg.lower())
             
-            files, _, _ = await get_search_results(msg.lower())
-            if files:
-                if len(msg) > 20:
-                    truncated_messages.append(msg[:17] + "...")
-                else:
-                    truncated_messages.append(msg)
+            # Add truncated message to the list
+            if len(msg) > 20:
+                truncated_messages.append(msg[:17] + "...")
+            else:
+                truncated_messages.append(msg)
 
-    # Display two buttons in a row
+    # Create keyboard with top search buttons
     keyboard = []
-    for i in range(0, len(truncated_messages), 2):
-        row_buttons = []
-        for j in range(2):
-            if i + j < len(truncated_messages):
-                msg = truncated_messages[i + j]
-                row_buttons.append(InlineKeyboardButton(msg, callback_data=f"search#{msg}"))
-        keyboard.append(row_buttons)
+    for msg in truncated_messages:
+        keyboard.append([InlineKeyboardButton(msg, callback_data=f"search#{msg}")])
 
+    # Add navigation buttons
     keyboard.append([
         InlineKeyboardButton("⛔️ Close", callback_data="close_data"),
         InlineKeyboardButton("◀️ Back", callback_data="home")
@@ -88,7 +83,7 @@ async def top_search_results(client, query):
     await query.message.edit_text("<b>Here are the top searches of the day:</b>", reply_markup=reply_markup, disable_web_page_preview=True)
 
 @Client.on_callback_query(filters.regex(r"search#"))
-async def search_callback(client, query):
+async def search_callback(client: Client, query: CallbackQuery):
     search = query.data.split("#")[1]
     await query.answer("Searching for your request :)")
     
