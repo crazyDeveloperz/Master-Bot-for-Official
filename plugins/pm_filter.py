@@ -86,14 +86,12 @@ async def top_search_results(client: Client, query: CallbackQuery):
 async def search_callback(client: Client, query: CallbackQuery):
     search = query.data.split("#")[1]
     await query.answer("Searching for your request :)")
-    
-    # Directly call the auto_filter function
-    fake_message = Message(
+    message = Message(
         message_id=query.message.message_id,
         chat=query.message.chat,
         text=search
     )
-    text = await auto_filter(client, fake_message)
+    text = await auto_filter(client, message)
     await query.message.edit_text(f"<b>{text}</b>", reply_markup=None, disable_web_page_preview=True)
 
 @Client.on_callback_query(filters.regex('rename'))
