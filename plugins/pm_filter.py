@@ -792,7 +792,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             f_caption = f"{files.file_name}"
 
         try:
-            if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(client, query):
+            if AUTH_CHANNEL and not await is_subscribed(client, query):
                 if clicked == typed:
                     await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
                     return
@@ -808,18 +808,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 if clicked == typed:
                     if IS_VERIFY and not await check_verification(client, query.from_user.id):
                         btn = [[
-                            InlineKeyboardButton("Vᴇʀɪғʏ", url=await get_token(client, query.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=", file_id)),
-                            InlineKeyboardButton("Hᴏᴡ Tᴏ Vᴇʀɪғʏ", url=HOW_TO_VERIFY)
+                            InlineKeyboardButton("ᴠᴇʀɪғʏ", url=await get_token(client, query.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=", file_id)),
+                            InlineKeyboardButton("ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ", url=HOW_TO_VERIFY)
                         ]]
                         await client.send_message(
                             chat_id=query.from_user.id,
-                            text="<b>Yᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴠᴇʀɪғɪᴇᴅ!\nKɪɴᴅʟʏ ᴠᴇʀɪғʏ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ Sᴏ ᴛʜᴀᴛ ʏᴏᴜ ᴄᴀɴ ɢᴇᴛ ᴀᴄᴄᴇss ᴛᴏ ᴜɴʟɪᴍɪᴛᴇᴅ ᴍᴏᴠɪᴇs ᴜɴᴛɪʟ 12 ʜᴏᴜʀs ғʀᴏᴍ ɴᴏᴡ !</b>",
+                            text="<b>ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴠᴇʀɪғɪᴇᴅ!\nᴋɪɴᴅʟʏ ᴠᴇʀɪғʏ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ Sᴏ ᴛʜᴀᴛ ʏᴏᴜ ᴄᴀɴ ɢᴇᴛ ᴀᴄᴄᴇss ᴛᴏ ᴜɴʟɪᴍɪᴛᴇᴅ ᴍᴏᴠɪᴇs ᴜɴᴛɪʟ 12 ʜᴏᴜʀs ғʀᴏᴍ ɴᴏᴡ !</b>",
                             protect_content=True if ident == 'checksubp' else False,
                             disable_web_page_preview=True,
                             parse_mode=enums.ParseMode.HTML,
                             reply_markup=InlineKeyboardMarkup(btn)
                         )
-                        return await query.answer("Hᴇʏ, Yᴏᴜ ʜᴀᴠᴇ ɴᴏᴛ ᴠᴇʀɪғɪᴇᴅ ᴛᴏᴅᴀʏ. Yᴏᴜ ʜᴀᴠᴇ ᴛᴏ ᴠᴇʀɪғʏ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ. Cʜᴇᴄᴋ ᴍʏ PM ᴛᴏ ᴠᴇʀɪғʏ ᴀɴᴅ ɢᴇᴛ ғɪʟᴇs !", show_alert=True)
+                        return await query.answer("ʜᴇʏ, ʏᴏᴜ ʜᴀᴠᴇ ɴᴏᴛ ᴠᴇʀɪғɪᴇᴅ ᴛᴏᴅᴀʏ. ʏᴏᴜ ʜᴀᴠᴇ ᴛᴏ ᴠᴇʀɪғʏ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ. ᴄʜᴇᴄᴋ ᴍʏ ᴘᴍ ᴛᴏ ᴠᴇʀɪғʏ ᴀɴᴅ ɢᴇᴛ ғɪʟᴇs !", show_alert=True)
                     else:
                         await client.send_cached_media(
                             chat_id=query.from_user.id,
@@ -828,13 +828,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             protect_content=True if ident == "filep" else False,
                             reply_markup=InlineKeyboardMarkup(
                                 [
-                                [ 
-                                InlineKeyboardButton('🔺 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ / ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🔺', callback_data=f'generate_stream_link:{file_id}') #Don't change anything without contacting me @LazyDeveloperr
+                                [                                
+                                InlineKeyboardButton('📧 🇺🇵🇩🇦🇹🇪 🇨🇭🇦🇳🇳🇪🇱', url=CHNL_LNK)                            
                                 ]
                                 ]
                             )
                         )
-                        return await query.answer('Cʜᴇᴄᴋ PM, I ʜᴀᴠᴇ sᴇɴᴛ ғɪʟᴇs ɪɴ PM', show_alert=True)
+                        return await query.answer('ᴄʜᴇᴄᴋ PM, I ʜᴀᴠᴇ sᴇɴᴛ ғɪʟᴇs ɪɴ PM', show_alert=True)
                 else:
                     return await query.answer(f"Hᴇʏ {query.from_user.first_name}, Tʜɪs Is Nᴏᴛ Yᴏᴜʀ Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ. Rᴇǫᴜᴇsᴛ Yᴏᴜʀ's !", show_alert=True)
         except UserIsBlocked:
@@ -844,7 +844,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         except Exception as e:
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
     elif query.data.startswith("checksub"):
-        if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(client, query):
+        if AUTH_CHANNEL and not await is_subscribed(client, query):
             await query.answer("Jᴏɪɴ ᴏᴜʀ Bᴀᴄᴋ-ᴜᴘ ᴄʜᴀɴɴᴇʟ ᴍᴀʜɴ! 😒", show_alert=True)
             return
         ident, file_id = query.data.split("#")
@@ -899,7 +899,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                  InlineKeyboardButton('🔺 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ / ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🔺', callback_data=f'generate_stream_link:{file_id}') #Don't change anything without contacting me @LazyDeveloperr
+                  InlineKeyboardButton('📧 🇺🇵🇩🇦🇹🇪 🇨🇭🇦🇳🇳🇪🇱', url=CHNL_LNK)
                  ]
                 ]
             )
