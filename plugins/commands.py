@@ -54,7 +54,9 @@ async def start(client, message):
                 ],[
                     InlineKeyboardButton('Korean & Chineese Drama', url='https://t.me/+r4ticWbniIxmNTk1')
                 ],[                                        
-                    InlineKeyboardButton('Join Backup Channel', url='https://t.me/snfilmy')                   
+                    InlineKeyboardButton('Join Backup Channel', url='https://t.me/snfilmy')
+                ],[  
+                    InlineKeyboardButton("Top Search Results", callback_data="toprslt")
                 ]]
         
         reply_markup = InlineKeyboardMarkup(buttons)
