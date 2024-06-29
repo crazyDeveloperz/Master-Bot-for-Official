@@ -17,7 +17,7 @@ def is_enabled(value, default):
 SESSION = environ.get('SESSION', 'Media_search')
 API_ID = int(environ.get('API_ID', '29499299'))
 API_HASH = environ.get('API_HASH', 'd2a224d0d84bf24b6b82e887a4f1559a')
-BOT_TOKEN = environ.get('BOT_TOKEN', "5925955161:AAHhxQ37hw5cKsg0i2OZtgrRkBRuHATRMTw")
+BOT_TOKEN = environ.get('BOT_TOKEN', "5925955161:AAH_Nu_eC6equFu6E_PZV2AVIiQtXQ5T1Sw")
 
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
@@ -50,7 +50,8 @@ NO_RESULTS_MSG = is_enabled((environ.get("NO_RESULTS_MSG", 'False')), False)
 
 #------------------------------------------ FORSE SUB CODE ---------------------------------------------#
 
-auth_channel = environ.get('AUTH_CHANNEL','-1002039261597')
+auth_channel = environ.get('AUTH_CHANNEL','-1001600537706')
+
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
 # Set to False inside the bracket if you don't want to use Request Channel else set it to Channel ID
 REQ_CHANNEL = environ.get("REQ_CHANNEL", True)
