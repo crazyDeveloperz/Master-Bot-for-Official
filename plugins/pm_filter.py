@@ -829,7 +829,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             reply_markup=InlineKeyboardMarkup(
                                 [
                                 [                                
-                                InlineKeyboardButton('📧 🇺🇵🇩🇦🇹🇪 🇨🇭🇦🇳🇳🇪🇱', url=CHNL_LNK)                            
+                                InlineKeyboardButton('🔺 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ / ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🔺', callback_data=f'generate_stream_link:{file_id}')                    
                                 ]
                                 ]
                             )
