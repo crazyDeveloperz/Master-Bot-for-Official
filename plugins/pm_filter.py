@@ -46,6 +46,58 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 
+@Client.on_callback_query(filters.regex("toprslt"))
+async def top_search_results(client, query):
+    def is_valid_string(string):
+        return bool(re.match('^[a-zA-Z0-9 ]*$', string))
+    await query.answer(f"Fetching Top Searches, please be patient. It might take some time.", show_alert=True)
+    top_searches = await mdb.get_top_messages(20)
+
+    unique_messages = set()
+    truncated_messages = []
+
+    for msg in top_searches:
+        if msg.lower() not in unique_messages and is_valid_string(msg):
+            unique_messages.add(msg.lower())
+
+            files, _, _ = await get_search_results(msg.lower())
+            if files:
+                if len(msg) > 20:
+                    truncated_messages.append(msg[:17] + "...")
+                else:
+                    truncated_messages.append(msg)
+
+    # Display two buttons in a row
+    keyboard = []
+    for i in range(0, len(truncated_messages), 2):
+        row_buttons = []
+        for j in range(2):
+            if i + j < len(truncated_messages):
+                msg = truncated_messages[i + j]
+                row_buttons.append(InlineKeyboardButton(msg, callback_data=f"search#{msg}"))
+        keyboard.append(row_buttons)
+
+    keyboard.append([
+        InlineKeyboardButton("⛔️ Close", callback_data="close_data"),
+        InlineKeyboardButton("◀️ Back", callback_data="home")
+    ])
+
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await query.message.edit_text("<b>Here are the top searches of the day:</b>", reply_markup=reply_markup, disable_web_page_preview=True)
+
+@Client.on_callback_query(filters.regex(r"search#"))
+async def search_callback(client, query):
+    search = query.data.split("#")[1]
+    await query.answer(text="Searching for your request :)")
+    # Directly call the auto_filter function
+    fake_message = Message(
+        message_id=query.message.message_id,
+        chat=query.message.chat,
+        text=search
+    )
+    text = await auto_filter(client, fake_message)
+    await query.message.edit_text(f"<b>{text}</b>", reply_markup=None, disable_web_page_preview=True)
+
 @Client.on_callback_query(filters.regex('rename'))
 async def rename(bot,update):
 	user_id = update.message.chat.id
@@ -146,32 +198,34 @@ async def doc(bot, update):
     if ph_path:
        os.remove(ph_path)
 
+from database.crazydb import mdb
 
 @Client.on_message(filters.text & filters.incoming)
 async def give_filter(client, message):
     if message.chat.id != SUPPORT_CHAT_ID:
+        await mdb.update_top_messages(message.from_user.id, message.text)
         glob = await global_filters(client, message)
-        if glob == False:
+        if not glob:
             manual = await manual_filters(client, message)
-            if manual == False:
+            if not manual:
                 settings = await get_settings(message.chat.id)
                 try:
-                    if settings['auto_ffilter']:
+                    if settings.get('auto_ffilter', False):
                         await auto_filter(client, message)
                 except KeyError:
                     grpid = await active_connection(str(message.from_user.id))
                     await save_group_settings(grpid, 'auto_ffilter', True)
                     settings = await get_settings(message.chat.id)
-                    if settings['auto_ffilter']:
+                    if settings.get('auto_ffilter', False):
                         await auto_filter(client, message)
-    else: #a better logic to avoid repeated lines of code in auto_filter function
+    else:
         search = message.text
         temp_files, temp_offset, total_results = await get_search_results(chat_id=message.chat.id, query=search.lower(), offset=0, filter=True)
         if total_results == 0:
             return
         else:
-            return await message.reply_text(
-                text=f"<b>Hᴇʏ {message.from_user.mention}, {str(total_results)} ʀᴇsᴜʟᴛs ᴀʀᴇ ғᴏᴜɴᴅ ɪɴ ᴍʏ ᴅᴀᴛᴀʙᴀsᴇ ғᴏʀ ʏᴏᴜʀ ᴏ̨ᴜᴇʀʏ {search}. Kɪɴᴅʟʏ ᴜsᴇ ɪɴʟɪɴᴇ sᴇᴀʀᴄʜ ᴏʀ ᴍᴀᴋᴇ ᴀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴀᴅᴅ ᴍᴇ ᴀs ᴀᴅᴍɪɴ ᴛᴏ ɢᴇᴛ ᴍᴏᴠɪᴇ ғɪʟᴇs. Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ sᴏ ᴛʜᴀᴛ ʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ғɪʟᴇs ғʀᴏᴍ ʜᴇʀᴇ...\n\nFᴏʀ Mᴏᴠɪᴇs, Jᴏɪɴ @snfilmy</b>",
+            await message.reply_text(
+                text=f"<b>Hey {message.from_user.mention}, {str(total_results)} results are found in my database for your query {search}. Kindly use inline search or make a group and add me as admin to get movie files. This is a support group so you can't get files from here...\n\nFor Movies, Join @snfilmy</b>",
                 parse_mode=enums.ParseMode.HTML
             )
             
@@ -570,6 +624,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.message.delete()
         await query.answer("Pʀᴏᴄᴇss Cᴀɴᴄᴇʟʟᴇᴅ !")
         return
+
+    
+		
     elif query.data == "delallconfirm":
         userid = query.from_user.id
         chat_type = query.message.chat.type
