@@ -50,7 +50,9 @@ SPELL_CHECK = {}
 async def top_search_results(client, query):
     def is_valid_string(string):
         return bool(re.match('^[a-zA-Z0-9 ]*$', string))
-    await query.answer(f"Fetching Top Searches, please be patient. It might take some time.", show_alert=True)
+    
+    await query.answer("Fetching Top Searches, please be patient. It might take some time.", show_alert=True)
+    
     top_searches = await mdb.get_top_messages(20)
 
     unique_messages = set()
@@ -59,7 +61,7 @@ async def top_search_results(client, query):
     for msg in top_searches:
         if msg.lower() not in unique_messages and is_valid_string(msg):
             unique_messages.add(msg.lower())
-
+            
             files, _, _ = await get_search_results(msg.lower())
             if files:
                 if len(msg) > 20:
@@ -88,7 +90,8 @@ async def top_search_results(client, query):
 @Client.on_callback_query(filters.regex(r"search#"))
 async def search_callback(client, query):
     search = query.data.split("#")[1]
-    await query.answer(text="Searching for your request :)")
+    await query.answer("Searching for your request :)")
+    
     # Directly call the auto_filter function
     fake_message = Message(
         message_id=query.message.message_id,
